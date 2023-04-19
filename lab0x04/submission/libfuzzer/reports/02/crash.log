@@ -1,0 +1,57 @@
+INFO: Seed: 1615820518
+INFO: Loaded 1 modules   (304 inline 8-bit counters): 304 [0x5b5330, 0x5b5460), 
+INFO: Loaded 1 PC tables (304 PCs): 304 [0x576be0,0x577ee0), 
+./fuzzer_load_png: Running 1 inputs 1 time(s) each.
+Running: reports/02/crash-d7dccd1dd76d905e300671a55d6e6de7b73deaa9
+
+=================================================================
+==1648==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 10100 byte(s) in 1 object(s) allocated from:
+    #0 0x5226c9 in realloc (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x5226c9)
+    #1 0x5536de in decompress_png_data /home/student/lab0x04/libfuzzer/pngparser.c:349:21
+    #2 0x555627 in load_png /home/student/lab0x04/libfuzzer/pngparser.c:678:7
+    #3 0x5520d2 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_load_png.c:15:7
+    #4 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45b6f1)
+    #5 0x446e02 in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x446e02)
+    #6 0x44ce6e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x44ce6e)
+    #7 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x474932)
+    #8 0x7f9f22ebed09 in __libc_start_main csu/../csu/libc-start.c:308:16
+
+Direct leak of 40 byte(s) in 2 object(s) allocated from:
+    #0 0x5223ad in malloc (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x5223ad)
+    #1 0x5553a9 in load_png /home/student/lab0x04/libfuzzer/pngparser.c:580:24
+    #2 0x5520d2 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_load_png.c:15:7
+    #3 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45b6f1)
+    #4 0x446e02 in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x446e02)
+    #5 0x44ce6e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x44ce6e)
+    #6 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x474932)
+    #7 0x7f9f22ebed09 in __libc_start_main csu/../csu/libc-start.c:308:16
+
+Direct leak of 13 byte(s) in 1 object(s) allocated from:
+    #0 0x5223ad in malloc (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x5223ad)
+    #1 0x552e2e in read_png_chunk /home/student/lab0x04/libfuzzer/pngparser.c:241:25
+    #2 0x554ca6 in load_png /home/student/lab0x04/libfuzzer/pngparser.c:579:11
+    #3 0x5520d2 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_load_png.c:15:7
+    #4 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45b6f1)
+    #5 0x446e02 in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x446e02)
+    #6 0x44ce6e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x44ce6e)
+    #7 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x474932)
+    #8 0x7f9f22ebed09 in __libc_start_main csu/../csu/libc-start.c:308:16
+
+Indirect leak of 6 byte(s) in 1 object(s) allocated from:
+    #0 0x5223ad in malloc (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x5223ad)
+    #1 0x552e2e in read_png_chunk /home/student/lab0x04/libfuzzer/pngparser.c:241:25
+    #2 0x5553b9 in load_png /home/student/lab0x04/libfuzzer/pngparser.c:579:11
+    #3 0x5520d2 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_load_png.c:15:7
+    #4 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45b6f1)
+    #5 0x446e02 in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x446e02)
+    #6 0x44ce6e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x44ce6e)
+    #7 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x474932)
+    #8 0x7f9f22ebed09 in __libc_start_main csu/../csu/libc-start.c:308:16
+
+SUMMARY: AddressSanitizer: 10159 byte(s) leaked in 5 allocation(s).
+
+INFO: a leak has been found in the initial corpus.
+
+INFO: to ignore leaks on libFuzzer side use -detect_leaks=0.

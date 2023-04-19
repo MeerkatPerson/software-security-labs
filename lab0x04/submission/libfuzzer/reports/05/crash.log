@@ -1,0 +1,33 @@
+INFO: Seed: 2289121307
+INFO: Loaded 1 modules   (321 inline 8-bit counters): 321 [0x5b52f0, 0x5b5431), 
+INFO: Loaded 1 PC tables (321 PCs): 321 [0x576b88,0x577f98), 
+INFO:       12 files found in corpus_png_name
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: seed corpus: files: 12 min: 1b max: 32b total: 193b rss: 31Mb
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==148726==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7f3c992f9521 bp 0x000000000001 sp 0x7ffdd6a2fcc0 T0)
+==148726==The signal is caused by a READ memory access.
+==148726==Hint: address points to the zero page.
+    #0 0x7f3c992f9521 in fwrite libio/iofwrite.c:37:3
+    #1 0x4c0c7f in fwrite (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x4c0c7f)
+    #2 0x55b12f in store_filesig /home/student/lab0x04/libfuzzer/pngparser.c:802:10
+    #3 0x55b12f in store_png /home/student/lab0x04/libfuzzer/pngparser.c:1099:3
+    #4 0x5521c2 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_store_png_name.c:23:19
+    #5 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x45b6f1)
+    #6 0x45ae35 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x45ae35)
+    #7 0x45cdd7 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::__Fuzzer::vector<fuzzer::SizedFile, fuzzer::fuzzer_allocator<fuzzer::SizedFile> >&) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x45cdd7)
+    #8 0x45cfd9 in fuzzer::Fuzzer::Loop(std::__Fuzzer::vector<fuzzer::SizedFile, fuzzer::fuzzer_allocator<fuzzer::SizedFile> >&) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x45cfd9)
+    #9 0x44cce5 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x44cce5)
+    #10 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x474932)
+    #11 0x7f3c992aad09 in __libc_start_main csu/../csu/libc-start.c:308:16
+    #12 0x421509 in _start (/home/student/lab0x04/libfuzzer/fuzzer_store_png_name+0x421509)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV libio/iofwrite.c:37:3 in fwrite
+==148726==ABORTING
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+0x0,
+\x00
+artifact_prefix='./'; Test unit written to ./crash-5ba93c9db0cff93f52b521d7420e43f6eda2784f
+Base64: AA==

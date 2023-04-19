@@ -1,0 +1,31 @@
+INFO: Seed: 431028057
+INFO: Loaded 1 modules   (303 inline 8-bit counters): 303 [0x5b5330, 0x5b545f), 
+INFO: Loaded 1 PC tables (303 PCs): 303 [0x576be0,0x577ed0), 
+INFO:       59 files found in ./seeds
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: seed corpus: files: 59 min: 5b max: 1070b total: 25079b rss: 31Mb
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==1487==ERROR: AddressSanitizer: SEGV on unknown address 0x7fcac08777f0 (pc 0x0000004a9434 bp 0x000000000000 sp 0x7fff48869340 T0)
+==1487==The signal is caused by a WRITE memory access.
+    #0 0x4a9434 in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x4a9434)
+    #1 0x5221b1 in free (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x5221b1)
+    #2 0x554b52 in load_png /home/student/lab0x04/libfuzzer/pngparser.c:703:7
+    #3 0x5520d2 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_load_png.c:15:7
+    #4 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45b6f1)
+    #5 0x45ae35 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45ae35)
+    #6 0x45cdd7 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::__Fuzzer::vector<fuzzer::SizedFile, fuzzer::fuzzer_allocator<fuzzer::SizedFile> >&) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45cdd7)
+    #7 0x45cfd9 in fuzzer::Fuzzer::Loop(std::__Fuzzer::vector<fuzzer::SizedFile, fuzzer::fuzzer_allocator<fuzzer::SizedFile> >&) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45cfd9)
+    #8 0x44cce5 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x44cce5)
+    #9 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x474932)
+    #10 0x7fcb45d01d09 in __libc_start_main csu/../csu/libc-start.c:308:16
+    #11 0x421509 in _start (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x421509)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x4a9434) in __asan::Allocator::Deallocate(void*, unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType)
+==1487==ABORTING
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+0x89,0x50,0x4e,0x47,0xd,0xa,0x1a,0xa,0x0,0x0,0x0,0xd,0x49,0x48,0x44,0x52,0x0,0x0,0x0,0x64,0x0,0x0,0x0,0x64,0x8,0x3,0x0,0x0,0x0,0x47,0x3c,0x65,0x66,0x0,0x0,0x0,0x6,0x50,0x4c,0x54,0x45,0xaa,0x0,0x0,0x0,0xaa,0xaa,0x7f,0xb,0x95,0xd2,0x80,0x0,0x0,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xb3,0xf,0xbe,0xb,0x34,0xe6,0xaf,0xb6,0x1d,0x18,0x8,0xfe,0xbc,0xf0,0x7f,0x86,0xd3,0x13,0x89,0x0,0x7b,0x9f,0xc1,0x0,0x0,0x0,0x0,0x49,0x45,0x4e,0x44,0xae,0x42,0x60,0x82,
+\x89PNG\x0d\x0a\x1a\x0a\x00\x00\x00\x0dIHDR\x00\x00\x00d\x00\x00\x00d\x08\x03\x00\x00\x00G<ef\x00\x00\x00\x06PLTE\xaa\x00\x00\x00\xaa\xaa\x7f\x0b\x95\xd2\x80\x00\x00\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xb3\x0f\xbe\x0b4\xe6\xaf\xb6\x1d\x18\x08\xfe\xbc\xf0\x7f\x86\xd3\x13\x89\x00{\x9f\xc1\x00\x00\x00\x00IEND\xaeB`\x82
+artifact_prefix='./'; Test unit written to ./crash-fa62c0780af15ea0c87a18ff08cc7bfd0e318a56
+Base64: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAABlBMVEWqAAAAqqp/C5XSgAAA/////////////////7MPvgs05q+2HRgI/rzwf4bTE4kAe5/BAAAAAElFTkSuQmCC

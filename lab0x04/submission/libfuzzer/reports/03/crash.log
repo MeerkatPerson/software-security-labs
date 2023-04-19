@@ -1,0 +1,27 @@
+INFO: Seed: 213684356
+INFO: Loaded 1 modules   (318 inline 8-bit counters): 318 [0x5b5370, 0x5b54ae), 
+INFO: Loaded 1 PC tables (318 PCs): 318 [0x576c60,0x578040), 
+INFO:       78 files found in ./seeds
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: seed corpus: files: 78 min: 5b max: 1070b total: 29026b rss: 31Mb
+=================================================================
+==2151==ERROR: AddressSanitizer: attempting free on address which was not malloc()-ed: 0x0fffbc326b00 in thread T0
+    #0 0x52212d in free (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x52212d)
+    #1 0x559687 in store_idat_plte /home/student/lab0x04/libfuzzer/pngparser.c:1025:5
+    #2 0x55b279 in store_png_palette /home/student/lab0x04/libfuzzer/pngparser.c:1068:3
+    #3 0x55b279 in store_png /home/student/lab0x04/libfuzzer/pngparser.c:1090:5
+    #4 0x552296 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_store_png_palette.c:71:15
+    #5 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x45b6f1)
+    #6 0x45ae35 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x45ae35)
+    #7 0x45cdd7 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::__Fuzzer::vector<fuzzer::SizedFile, fuzzer::fuzzer_allocator<fuzzer::SizedFile> >&) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x45cdd7)
+    #8 0x45cfd9 in fuzzer::Fuzzer::Loop(std::__Fuzzer::vector<fuzzer::SizedFile, fuzzer::fuzzer_allocator<fuzzer::SizedFile> >&) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x45cfd9)
+    #9 0x44cce5 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x44cce5)
+    #10 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x474932)
+    #11 0x7f6052f41d09 in __libc_start_main csu/../csu/libc-start.c:308:16
+    #12 0x421509 in _start (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x421509)
+
+Address 0x0fffbc326b00 is located in the high shadow area.
+SUMMARY: AddressSanitizer: bad-free (/home/student/lab0x04/libfuzzer/fuzzer_store_png_palette+0x52212d) in free
+==2151==ABORTING
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-2d5ff885f157e7321b0f50c06272f3da682963af

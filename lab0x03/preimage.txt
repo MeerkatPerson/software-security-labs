@@ -1,0 +1,4 @@
+Flag prefix: FLAG
+Flag length (incl. prefix): 16
+Flag charset: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Flag CRC32 (poly: 0x04c11db7): 0x3e5074ba

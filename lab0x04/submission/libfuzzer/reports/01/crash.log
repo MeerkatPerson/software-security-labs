@@ -1,0 +1,42 @@
+INFO: Seed: 1209628194
+INFO: Loaded 1 modules   (303 inline 8-bit counters): 303 [0x5b5330, 0x5b545f), 
+INFO: Loaded 1 PC tables (303 PCs): 303 [0x576be0,0x577ed0), 
+INFO:       59 files found in ./seeds
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: seed corpus: files: 59 min: 5b max: 1070b total: 25079b rss: 31Mb
+#60	INITED cov: 68 ft: 84 corp: 19/8315b exec/s: 60 rss: 418Mb
+#61	NEW    cov: 68 ft: 85 corp: 20/8880b lim: 1070 exec/s: 61 rss: 418Mb L: 565/1070 MS: 1 ChangeBit-
+#72	REDUCE cov: 68 ft: 85 corp: 20/8816b lim: 1070 exec/s: 72 rss: 418Mb L: 120/1070 MS: 1 EraseBytes-
+#125	REDUCE cov: 68 ft: 85 corp: 20/8619b lim: 1070 exec/s: 125 rss: 418Mb L: 368/1070 MS: 3 InsertByte-ChangeBit-EraseBytes-
+#141	REDUCE cov: 68 ft: 85 corp: 20/8604b lim: 1070 exec/s: 141 rss: 418Mb L: 278/1070 MS: 1 CrossOver-
+#161	REDUCE cov: 68 ft: 85 corp: 20/8522b lim: 1070 exec/s: 161 rss: 418Mb L: 286/1070 MS: 5 ShuffleBytes-CopyPart-EraseBytes-CopyPart-EraseBytes-
+#172	NEW    cov: 68 ft: 90 corp: 21/8846b lim: 1070 exec/s: 86 rss: 421Mb L: 324/1070 MS: 1 InsertRepeatedBytes-
+#205	REDUCE cov: 68 ft: 90 corp: 21/8808b lim: 1070 exec/s: 102 rss: 421Mb L: 192/1070 MS: 3 ChangeASCIIInt-CopyPart-EraseBytes-
+#256	pulse  cov: 68 ft: 90 corp: 21/8808b lim: 1070 exec/s: 85 rss: 437Mb
+#367	REDUCE cov: 68 ft: 90 corp: 21/8798b lim: 1070 exec/s: 91 rss: 437Mb L: 97/1070 MS: 1 EraseBytes-
+#376	REDUCE cov: 68 ft: 90 corp: 21/8787b lim: 1070 exec/s: 94 rss: 437Mb L: 181/1070 MS: 4 CopyPart-CopyPart-ChangeByte-EraseBytes-
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==1540==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000008 (pc 0x0000005539fd bp 0x7ffc61f49d50 sp 0x7ffc61f49ce0 T0)
+==1540==The signal is caused by a READ memory access.
+==1540==Hint: address points to the zero page.
+    #0 0x5539fd in convert_color_palette_to_image /home/student/lab0x04/libfuzzer/pngparser.c:388:70
+    #1 0x55587f in convert_data_to_image /home/student/lab0x04/libfuzzer/pngparser.c:492:12
+    #2 0x55587f in parse_png_no_interlace /home/student/lab0x04/libfuzzer/pngparser.c:508:10
+    #3 0x55587f in parse_png /home/student/lab0x04/libfuzzer/pngparser.c:524:12
+    #4 0x55587f in load_png /home/student/lab0x04/libfuzzer/pngparser.c:678:10
+    #5 0x5520d2 in LLVMFuzzerTestOneInput /home/student/lab0x04/libfuzzer/fuzzer_load_png.c:15:7
+    #6 0x45b6f1 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45b6f1)
+    #7 0x45ae35 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45ae35)
+    #8 0x45c860 in fuzzer::Fuzzer::MutateAndTestOne() (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45c860)
+    #9 0x45d2d5 in fuzzer::Fuzzer::Loop(std::__Fuzzer::vector<fuzzer::SizedFile, fuzzer::fuzzer_allocator<fuzzer::SizedFile> >&) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x45d2d5)
+    #10 0x44cce5 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x44cce5)
+    #11 0x474932 in main (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x474932)
+    #12 0x7f2e12096d09 in __libc_start_main csu/../csu/libc-start.c:308:16
+    #13 0x421509 in _start (/home/student/lab0x04/libfuzzer/fuzzer_load_png+0x421509)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/student/lab0x04/libfuzzer/pngparser.c:388:70 in convert_color_palette_to_image
+==1540==ABORTING
+MS: 1 ShuffleBytes-; base unit: 2d5ff885f157e7321b0f50c06272f3da682963af
+artifact_prefix='./'; Test unit written to ./crash-d7dccd1dd76d905e300671a55d6e6de7b73deaa9
